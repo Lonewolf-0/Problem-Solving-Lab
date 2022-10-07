@@ -1,29 +1,52 @@
 #include<bits/stdc++.h>
 using namespace std;
 
-int hcf(int a,int b)
-{
-    if(a%b==0)
-        return b;
+bool prime(int n)
+{   
+    int flag=0;
+    
+    for(int i=2;i<=n/2;i++)
+    {
+        if(n%i==0)
+        {
+            flag=1;
+            break;
+        }
+    }
+    if(flag)
+        return false;
     else
-        return hcf(b,a%b);
+        return true;
+    
 }
-int x=0;
-int lcm(int a,int b)
+void prime1(int n)
 {
-    x=x+b;
-    if(x%a==0&&x%b==0)
-        return x;
-    else
-        return lcm(a,b);
-    
-    
+    int a[101]={0};
+    for(int i=2;a[i]==0&&i<sqrt(n);i++)
+    {
+        for(int j=1;j<n;j=j*i)
+        {
+            a[i]=1;
+        }
+    }
 
+    for(int i=1;i<=n;i++)
+    {
+        if(a[i])
+        cout<<i;
+    }
 }
+
 int main()
 {
-    cout<<hcf(9,21);
-    cout<<endl;
-    cout<<lcm(5,7);
+    
+    int n=10;
+
+    // for(int i=2;i<=n;i++)
+    // {
+    //     if(prime(i))
+    //         cout<<i<<endl;
+    // }
+    prime1(100);
     return 0;
 }
