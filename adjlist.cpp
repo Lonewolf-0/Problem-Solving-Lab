@@ -27,5 +27,32 @@ int main()
         cout<<endl;
     }
 
+    //bfs
+    queue<int> q;
+    vector<int> status(v,0);
+    q.push(0);
+    status[0]=1;
+
+    while(!q.empty())
+    {
+        int x;
+        x=q.front();
+        for(int i=0;i<adjlist[x].size();i++)
+        {
+            if(status[adjlist[x][i]]==0)
+            {
+                status[adjlist[x][i]]=status[x]+1;
+                q.push(adjlist[x][i]);
+            }
+        }
+        q.pop();
+        cout<<x<<" ";
+    }
+
+    for(auto i:status)
+    {
+        cout<<i<<" ";
+    }
+
     return 0;
 }
